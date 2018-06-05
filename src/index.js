@@ -13,7 +13,17 @@ import rootSaga from './core/sagas'
 
 const sagaMiddleware = createSagaMiddleware()
 
-const reducerSW = (state, action) => {}
+const reducerSW = (state = { activeItem: 'PEOPLE' }, action) => {
+  switch (action.type) {
+    case acciones.Mostrar:
+      return {
+        ...state,
+        activeItem: action.activeItem
+      }
+    default:
+      return state
+  }
+}
 
 const storeSW = createStore(
   reducerSW,
@@ -22,6 +32,9 @@ const storeSW = createStore(
     window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
   )
 )
+
+sagaMiddleware.run(rootSaga)
+
 ReactDOM.render(
   <Provider store={storeSW}>
     <StarWars />
