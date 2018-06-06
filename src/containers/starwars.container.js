@@ -3,20 +3,19 @@ import StarWarsScene from '../scenes/starwars.scene'
 import Actions from '../core/actions'
 
 const mapStateToProps = state => ({
-  hello: 'Hello Star Wars!!',
-  activeItem: state.activeItem
+  hello: 'Star Wars with Redux-Saga!!',
+  activeItem: state.activeItem,
+  starwars: state.starwars,
+  stateL: state.loading,
+  errorL: state.error
 })
 
 const mapDispatchToProps = dispatch => ({
-  Mostrar: name =>
-    dispatch({
-      type: Actions.Mostrar,
-      activeItem: name
-    }),
   Mostrar2: name =>
     dispatch({
-      type: Actions.Mostrar2,
-      activeItem: name
+      type: Actions.API_CALL_REQUEST,
+      activeItem: name,
+      payload: name
     })
 })
 export default connect(mapStateToProps, mapDispatchToProps)(StarWarsScene)

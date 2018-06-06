@@ -13,12 +13,40 @@ import rootSaga from './core/sagas'
 
 const sagaMiddleware = createSagaMiddleware()
 
-const reducerSW = (state = { activeItem: 'PEOPLE' }, action) => {
+const initialState = {
+  loading: false,
+  starwars: false,
+  error: false,
+  activeItem: 'people'
+}
+
+const reducerSW = (state = initialState, action) => {
   switch (action.type) {
     case acciones.Mostrar:
       return {
         ...state,
-        activeItem: action.activeItem
+        activeItem: action.activeItem,
+        payload: action.payload
+      }
+    case acciones.API_CALL_REQUEST:
+      return {
+        ...state,
+        loading: true,
+        error: false
+      }
+    case acciones.API_CALL_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        starwars: action.payload,
+        error: false
+      }
+    case acciones.API_CALL_FAILURE:
+      return {
+        ...state,
+        loading: false,
+        payload: null,
+        error: true
       }
     default:
       return state

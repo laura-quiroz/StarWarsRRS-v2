@@ -6,9 +6,19 @@
   background-color: black;
   height: 150px;
   padding: 0;
-  color: white;
 }
-
+.App_Menu {
+  padding: 1em;
+  max-width: 680px;
+  margin: 0 auto;
+  text-align: center;
+}
+.App_Menu_Cont {
+  padding: 0.5em;
+  max-width: 1000px;
+  margin: 0 auto;
+  text-align: center;
+}
 .App-title {
   font-size: 1.5em;
 }
@@ -16,3 +26,6 @@
   width: 600px;
   height: 100%;
 }
+/*.p_name {
+  background: #cecdd0;
+}*/
